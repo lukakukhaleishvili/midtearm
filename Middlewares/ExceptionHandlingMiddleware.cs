@@ -16,17 +16,14 @@ namespace Reddit.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            try
-            {
-
+            try{
                 await _requestDelegate(context);
 
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Exception thrown");
+            catch (Exception ex){
+                _logger.LogError(ex, "Exception is thrown");
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await context.Response.WriteAsync("Unexpected error occured on the server.");
+                await context.Response.WriteAsync(" Unexpected error occured on the server.");
             }
         }
 
